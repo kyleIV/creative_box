@@ -225,7 +225,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel2.Location = new System.Drawing.Point(199, 503);
+            this.panel2.Location = new System.Drawing.Point(199, 393);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(895, 10);
             this.panel2.TabIndex = 89;
@@ -234,7 +234,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label9.Location = new System.Drawing.Point(540, 531);
+            this.label9.Location = new System.Drawing.Point(540, 421);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(232, 13);
             this.label9.TabIndex = 90;
@@ -286,6 +286,7 @@
             this.pictureBox2.Location = new System.Drawing.Point(199, 165);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(184, 192);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             // 
@@ -307,7 +308,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(36)))), ((int)(((byte)(46)))));
-            this.ClientSize = new System.Drawing.Size(1423, 913);
+            this.ClientSize = new System.Drawing.Size(1298, 541);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);

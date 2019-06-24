@@ -12,8 +12,8 @@ using System.Data.SqlClient;
 namespace Creative_Box
 {
    
-    public partial class KayitOl : Form
-    {
+    public partial class KayitOl : Form{
+
         SqlConnection baglanti = new SqlConnection("Data Source=DESKTOP-SJ1D6UO;Initial Catalog=CreativeBox;Integrated Security=True");
 
         public KayitOl(){
@@ -48,16 +48,14 @@ namespace Creative_Box
 
                     MessageBox.Show("Kutucuklar boş geçilemez!");
 
-                }
-                else{
+                }else{
                   
                     komut.ExecuteNonQuery();
                     baglanti.Close();
                     MessageBox.Show("Yaratici olarak kayit olundu");
                 }
 
-            }
-            else{
+            }else{
 
                 SqlCommand komut = new SqlCommand("insert into kayit(kullanici_adi,sifre,eposta,resim) values(@k1,@k2,@k3,@k4)", baglanti);
 

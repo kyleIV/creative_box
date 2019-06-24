@@ -22,22 +22,14 @@ namespace Creative_Box
         public string kulid;
         public string kuladi;
 
-        private void Form5_Load(object sender, EventArgs e)
-        {
-            // TODO: Bu kod satırı 'creativeBoxDataSet10.kayit_oyun' tablosuna veri yükler. Bunu gerektiği şekilde taşıyabilir, veya kaldırabilirsiniz.
+        private void Form5_Load(object sender, EventArgs e){
+            
             this.kayit_oyunTableAdapter6.Fill(this.creativeBoxDataSet10.kayit_oyun);
-            // TODO: Bu kod satırı 'creativeBoxDataSet9.kayit_oyun' tablosuna veri yükler. Bunu gerektiği şekilde taşıyabilir, veya kaldırabilirsiniz.
             this.kayit_oyunTableAdapter5.Fill(this.creativeBoxDataSet9.kayit_oyun);
-            // TODO: Bu kod satırı 'creativeBoxDataSet8.kayit_oyun' tablosuna veri yükler. Bunu gerektiği şekilde taşıyabilir, veya kaldırabilirsiniz.
             this.kayit_oyunTableAdapter4.Fill(this.creativeBoxDataSet8.kayit_oyun);
-            // TODO: Bu kod satırı 'creativeBoxDataSet6.kayit_oyun' tablosuna veri yükler. Bunu gerektiği şekilde taşıyabilir, veya kaldırabilirsiniz.
             this.kayit_oyunTableAdapter3.Fill(this.creativeBoxDataSet6.kayit_oyun);
+
             label3.Text = Yaratici_Girisi.kullanici_adi;
-
-           // pictureBox2.ImageLocation = dataGridView2.Rows[Select * from ].Cells[2].Value.ToString();
-
-
-
             label22.Text = kulid;
             label23.Text = kuladi;
 
@@ -80,17 +72,22 @@ namespace Creative_Box
                 de.Fill(dy);
                 dataGridView2.DataSource = dy;
                 baglanti.Close();
-        }
 
+            pictureBox2.ImageLocation = dy.Rows[0]["oyun_resim"].ToString();
+            pictureBox4.ImageLocation = dy.Rows[1]["oyun_resim"].ToString();
+            pictureBox5.ImageLocation = dy.Rows[2]["oyun_resim"].ToString();
+        }
+         static string  yol="";
         private void DataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int secilen = dataGridView2.SelectedCells[0].RowIndex;
             textBox1.Text = dataGridView2.Rows[secilen].Cells[4].Value.ToString();
             textBox2.Text = dataGridView2.Rows[secilen].Cells[0].Value.ToString();
+            yol= dataGridView2.Rows[secilen].Cells[3].Value.ToString();
             textBox3.Text = dataGridView2.Rows[secilen].Cells[1].Value.ToString();
             textBox4.Text = dataGridView2.Rows[secilen].Cells[4].Value.ToString();
             label20.Text = dataGridView2.Rows[secilen].Cells[5].Value.ToString();
-
+            label1.Text= dataGridView2.Rows[secilen].Cells[2].Value.ToString();
             pictureBox7.ImageLocation = dataGridView2.Rows[secilen].Cells[2].Value.ToString();
         }
 
@@ -113,8 +110,7 @@ namespace Creative_Box
 
         private void Button2_Click(object sender, EventArgs e){
 
-            openFileDialog1.ShowDialog();
-            textBox1.Text = openFileDialog1.FileName;
+            System.Diagnostics.Process.Start(yol); 
 
         }
 
@@ -152,33 +148,18 @@ namespace Creative_Box
             button1.BackColor = Color.DarkRed;
             button1.Enabled = false;
 
-            //baglanti.Open();
-            // SqlCommand guncelle = new SqlCommand(" update oyun_kayit set oyun_begenme='" + label20.Text + "' where oyun_adi= '" + textBox2.Text + "'", baglanti);
-            // baglanti.ExecuteNonQuery();
-            // baglanti.Close();
-            //int deger = int.Parse(label20.Text);
-            //deger = deger + 1;
-            //label20.Text = deger.ToString();
-            //button1.BackColor = Color.DarkRed;
-            //button1.Enabled = false;
-            //SqlCommand kkk = new SqlCommand("update oyun_kayit set oyun_begenme = @lbl20");
-            //kkk.Parameters.AddWithValue("@lbl20", label20.Text);
 
-            //kkk.ExecuteNonQuery();
-            //baglanti.Close();
-
-            //SqlCommand command = new SqlCommand("Update kayit_oyun (oyun_begenme) values("+ deger.ToString()+")", baglanti);
-            //SqlCommand baglanti = new SqlCommand("update kayit__oyun set oyun_begenme = @lbl20");
-
-            //baglanti.Parameters.AddWithValue("@lbl20", label20.Text);
-
-            // baglanti.ExecuteNonQuery();
-            //  baglanti.Close();
-
+            baglanti.Open();
+            SqlCommand komut = new SqlCommand("update kayit_oyun set oyun_begenme=@k1 where oyun_adi=@isim", baglanti);
+            komut.Parameters.AddWithValue("@k1", deger);
+            komut.Parameters.AddWithValue("@isim", textBox2.Text);
+            komut.ExecuteNonQuery();
+            baglanti.Close();
+            MessageBox.Show("Güncellendi");
+               
         }
 
-        private void Begenme_siralamasiToolStripButton_Click(object sender, EventArgs e)
-        {
+       private void Begenme_siralamasiToolStripButton_Click(object sender, EventArgs e){
             try
             {
                 this.kayit_oyunTableAdapter6.Begenme_siralamasi(this.creativeBoxDataSet10.kayit_oyun);
@@ -188,22 +169,25 @@ namespace Creative_Box
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
 
-        }
+        } private void Button5_Click(object sender, EventArgs e) {
 
-        private void Button5_Click(object sender, EventArgs e)
-        {
+            Profil pro = new Profil();
             Baslangic bas = new Baslangic();
             this.Visible = false;
+            pro.Visible = false;
             bas.ShowDialog();
             Application.Exit();
-        }
 
-        private void Button3_Click(object sender, EventArgs e)
-        {
+        } private void Button3_Click(object sender, EventArgs e) {
             Oyun_Sayfasi oy_yukle = new Oyun_Sayfasi();
             this.Visible = true;
             oy_yukle.ShowDialog();
             
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("www.paypal.com");
         }
     }
 }

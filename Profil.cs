@@ -57,7 +57,7 @@ namespace Creative_Box
         } private void Button2_Click(object sender, EventArgs e){
 
             Anasayfa frm5 = new Anasayfa();
-            this.Visible = true;
+            this.Visible = false;
             frm5.kulid = label14.Text;
             frm5.ShowDialog();
             
